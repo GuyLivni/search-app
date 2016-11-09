@@ -1,6 +1,4 @@
 system-config.js*
-*.js
-*.js.map
 client/app/**/*.js
 client/app/*/*.js
 client/app/**/*.map
