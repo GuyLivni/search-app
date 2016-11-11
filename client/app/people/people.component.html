@@ -1,0 +1,15 @@
+<div class="search">
+    <people-search [isRequesting]="isRequesting"></people-search>
+    <div class="cui__selector--direct__title no-results"
+         *ngIf="errorMessage">{{errorMessage}}
+    </div>
+    <div class="cui__selector--direct__title no-results"
+         *ngIf="total === 0 && !errorMessage">No results, please review your search or try a different one
+    </div>
+    <div class="cui__selector--direct title">
+        <people-list *ngIf="!errorMessage && total !== 0"
+                     (pageChanged)="onPageChanged($event)"
+                     [pager]="pager" [total]="total" [people]="people">
+        </people-list>
+    </div>
+</div>

@@ -1,8 +1,9 @@
 .search {
-	margin: 0 auto;
-	width: 800px;
+    margin: 0 auto;
+    width: 800px;
+    position: relative;
 }
 
 .no-results{
-	text-align: center
+    text-align: center
 }

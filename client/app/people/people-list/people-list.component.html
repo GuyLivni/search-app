@@ -1,12 +1,12 @@
 <div class="cui__selector--direct title results">
-	<h2 class="cui__selector--direct__title" *ngIf="total">Search results: {{total}}</h2>
+    <h2 class="cui__selector--direct__title" *ngIf="total">Search results: {{total}}</h2>
 
-	<people-item [person]="person"
-				 *ngFor="let person of people | paginate: { itemsPerPage: pager.pageSize, currentPage: page, totalItems: total }">
-	</people-item>
+    <people-item [person]="person"
+                 *ngFor="let person of people | paginate: { itemsPerPage: pager.pageSize, currentPage: page, totalItems: total }">
+    </people-item>
 
-	<pagination-controls class="pagination"
-						 *ngIf="people"
-						 (pageChange)="onPageChanged($event)">
-	</pagination-controls>
+    <pagination-controls class="pagination"
+                         *ngIf="people"
+                         (pageChange)="onPageChanged($event)">
+    </pagination-controls>
 </div>
