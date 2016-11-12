@@ -1,3 +1,7 @@
+.no-results{
+  text-align: center
+}
+
 @-webkit-keyframes spin {
   to {
     -webkit-transform: rotate(1turn);

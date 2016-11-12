@@ -1,0 +1,15 @@
+<div class="cui__input giant">
+    <my-spinner [isRunning]="isRequesting"
+                [delay]="0"></my-spinner>
+
+    <label [hidden]="term.value"
+           class="cui__input__label">Type your search query</label>
+
+    <input type="text"
+           class="cui__input__input"
+           [formControl]="term"/>
+</div>
+
+<div class="cui__selector--direct__title no-results"
+     *ngIf="errorMessage">{{errorMessage}}
+</div>

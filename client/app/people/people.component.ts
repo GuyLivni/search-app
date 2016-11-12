@@ -3,8 +3,6 @@ import {PeopleService} from "./shared/people.service";
 import {Person} from "./shared/person.model";
 import {PagerModel} from "./shared/pager.model";
 import {PeopleResult} from "./shared/people-result.model";
-import {Observable} from "rxjs";
-import {SearchValidationService} from "../shared/services/search-validation.service";
 
 @Component({
     selector: 'people-container',
@@ -16,27 +14,16 @@ export class PeopleComponent {
     people: Person[];
     total:  number;
     term:   any;
-    errorMessage: string;
     pager:  PagerModel;
     isRequesting: boolean;
 
-    constructor(private peopleSearch: PeopleService,
-                private validateService: SearchValidationService) {}
+    constructor(private peopleSearch: PeopleService) {}
 
     searchUpdated = this.peopleSearch.currentSearchTerm$
-        .map(term => this.validateService.validateTerm(term))
         .do(term => this.term = term)
         .do(() => this.pager.pageIndex = 1)
-        .switchMap(term => {
-            if(this.term.valid){
-                //side effect should not be inside switchMap
-                this.isRequesting = true;
-                this.errorMessage = '';
-                return this.peopleSearch.search(term, this.pager)
-            }
-            this.errorMessage = this.term.message;
-            return Observable.empty();
-        })
+        .do(() => this.isRequesting = true)
+        .switchMap(term => this.peopleSearch.search(term, this.pager))
         .map((result: PeopleResult) => {
             this.total = result.totalCount;
             return result.result
@@ -45,11 +32,11 @@ export class PeopleComponent {
     ngOnInit(){
         this.pager = new PagerModel();
         this.searchUpdated.subscribe(
-                result => {
-                    this.people = result;
-                    this.isRequesting = false;
-                },
-                error => console.log(error));
+           result => {
+               this.people = result;
+               this.isRequesting = false;
+           },
+           error => console.log(error));
     }
 
     onPageChanged(page: number) {
