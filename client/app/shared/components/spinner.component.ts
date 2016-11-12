@@ -2,12 +2,12 @@ import {Component, Input} from "@angular/core";
 
 @Component({
     selector: 'my-spinner',
-    templateUrl: './app/shared/components/SpinnerComponent.html',
-    styleUrls: ['./app/shared/components/SpinnerComponent.css']
+    templateUrl: './app/shared/components/spinner.component.html',
+    styleUrls: ['./app/shared/components/spinner.component.css']
 })
 
 export class SpinnerComponent{
-    private currentTimeout: number;
+    private currentTimeout: any;
     private isDelayedRunning: boolean = false;
 
     @Input()

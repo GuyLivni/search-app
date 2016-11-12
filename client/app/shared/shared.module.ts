@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {SearchValidationService} from "./services/search-validation.service";
-import {SpinnerComponent} from "./components/SpinnerComponent";
+import {SpinnerComponent} from "./components/spinner.component";
 
 @NgModule({
     imports: [
